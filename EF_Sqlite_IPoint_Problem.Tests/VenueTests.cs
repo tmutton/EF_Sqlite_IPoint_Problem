@@ -15,7 +15,7 @@ namespace EF_Sqlite_IPoint_Problem.Tests
             {
                 connection.Open();
 
-                var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlite(connection).Options;
+                var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlite(connection, x => x.UseNetTopologySuite()).Options;
 
                 // ensure the database was created
                 using (var context = new ApplicationDbContext(options))
