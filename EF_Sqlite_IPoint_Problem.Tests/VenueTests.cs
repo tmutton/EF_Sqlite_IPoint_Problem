@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
 using System.Threading.Tasks;
 using EF_Sqlite_IPoint_Problem.Data;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace EF_Sqlite_IPoint_Problem.Tests
 {
@@ -14,6 +15,7 @@ namespace EF_Sqlite_IPoint_Problem.Tests
             using (var connection = new SqliteConnection("DataSource=:memory:"))
             {
                 connection.Open();
+                SpatialiteLoader.Load(connection);
 
                 var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlite(connection, x => x.UseNetTopologySuite()).Options;
 
